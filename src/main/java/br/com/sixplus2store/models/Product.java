@@ -26,7 +26,6 @@ public class Product {
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
-
     public Product() {}
 
     public Product(ProductDTO dto) {
