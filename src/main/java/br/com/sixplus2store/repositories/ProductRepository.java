@@ -19,15 +19,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAll(Pageable pageable);
     Page<Product> findByCategory(Category category, Pageable pageable);
-    @Query(value = "select * from product " +
-            "inner join category on category.id=product.category_id " +
-            "inner join product_size on product.id=product_size.product_id " +
-            "where category.id=:category and product_size.size_id=:size",nativeQuery = true)
+    @Query(value = "select * from tb_product " +
+            "inner join tb_category on tb_category.id=tb_product.category_id " +
+            "inner join tb_product_size on tb_product.id=tb_product_size.product_id " +
+            "where tb_category.id=:category and tb_product_size.size_id=:size",nativeQuery = true)
     Page<Product> findByCategoryAndSize(@Param("category") Long category, @Param("size") Long size, Pageable page);
-    @Query(value = "Select * from product " +
-            "inner join product_size " +
-            "inner join size on product_size.size_id=size.id " +
-            "where product_size.product_id=product.id and product_size.size_id=:size",
+    @Query(value = "Select * from tb_product " +
+            "inner join tb_product_size " +
+            "inner join tb_size on tb_product_size.size_id=tb_size.id " +
+            "where tb_product_size.product_id=tb_product.id and tb_product_size.size_id=:size",
             nativeQuery = true)
     Page<Product> findBySizes(@Param("size") Long size, Pageable pageable);
 }

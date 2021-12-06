@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
+@Table(name = "tb_product_size")
 public class ProductSize implements Serializable {
 
     @EmbeddedId

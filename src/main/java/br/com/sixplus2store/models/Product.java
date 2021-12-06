@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "tb_product")
 public class Product {
 
     @Id
@@ -28,7 +29,6 @@ public class Product {
     private Category category;
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     List<ProductSize> sizes;
-    private Integer available;
 
     public Product() {}
 

@@ -6,9 +6,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@Table(name = "tb_size")
 public class Size {
 
     @Id
