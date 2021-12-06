@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +26,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+    List<ProductSize> sizes;
+    private Integer available;
 
     public Product() {}
 

@@ -2,6 +2,7 @@ package br.com.sixplus2store.controllers;
 
 import br.com.sixplus2store.dtos.ProductDTO;
 import br.com.sixplus2store.services.ProductService;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +21,10 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
-        return ResponseEntity.ok(service.findAllPaged(pageable));
+    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable,
+                                                    @RequestParam(required = false) Long category,
+                                                    @RequestParam(required = false) String productSize) {
+        return ResponseEntity.ok(service.findAllPaged(category,productSize,pageable));
     }
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
