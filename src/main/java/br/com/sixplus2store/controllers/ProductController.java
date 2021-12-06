@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -31,6 +33,10 @@ public class ProductController {
         return ResponseEntity.ok(service.findById(id));
     }
 
+    @GetMapping("/{id}/sizes")
+    public ResponseEntity<List<String>> findSizes(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findSizes(id));
+    }
     @PostMapping
     public ResponseEntity<ProductDTO> persistNew(@RequestBody ProductDTO dto) {
         return ResponseEntity.ok(service.persistNew(dto));

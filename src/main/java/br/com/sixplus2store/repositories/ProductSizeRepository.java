@@ -4,6 +4,8 @@ import br.com.sixplus2store.models.Product;
 import br.com.sixplus2store.models.ProductSize;
 import br.com.sixplus2store.models.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +15,7 @@ public interface ProductSizeRepository extends JpaRepository<ProductSize, Long> 
 
 
     List<ProductSize> findBySize(Size size);
+
+    @Query("SELECT s.name FROM ProductSize ps INNER JOIN ps.size s WHERE ps.product.id=:id ")
+    List<String> findSizes(@Param("id")Long id);
 }

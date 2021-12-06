@@ -86,4 +86,10 @@ public class ProductService {
     public ProductDTO findById(Long id) {
         return new ProductDTO(productRepository.findById(id).get());
     }
+
+    public List<String> findSizes(Long id) {
+
+        return productSizeRepository.findSizes(id);
+
+    }
 }
