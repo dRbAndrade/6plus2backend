@@ -1,6 +1,7 @@
 package br.com.sixplus2store.controllers;
 
 import br.com.sixplus2store.dtos.ProductDTO;
+import br.com.sixplus2store.dtos.ProductSizeDTO;
 import br.com.sixplus2store.services.ProductService;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,17 @@ public class ProductController {
     public ResponseEntity<List<String>> findSizes(@PathVariable Long id) {
         return ResponseEntity.ok(service.findSizes(id));
     }
+    @GetMapping("/sizes")
+    public ResponseEntity<List<ProductSizeDTO>> findAllSizes(){
+        return ResponseEntity.ok(service.findAllSizes());
+    }
     @PostMapping
     public ResponseEntity<ProductDTO> persistNew(@RequestBody ProductDTO dto) {
         return ResponseEntity.ok(service.persistNew(dto));
+    }
+    @PostMapping("/batch")
+    public ResponseEntity<Page<ProductDTO>>findCartProducts(@RequestBody List<Long> batch, Pageable pageable){
+        return ResponseEntity.ok(service.findBatch(batch,pageable));
     }
 
     @PutMapping("/{id}")

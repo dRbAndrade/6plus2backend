@@ -1,6 +1,7 @@
 package br.com.sixplus2store.services;
 
 import br.com.sixplus2store.dtos.ProductDTO;
+import br.com.sixplus2store.dtos.ProductSizeDTO;
 import br.com.sixplus2store.models.Category;
 import br.com.sixplus2store.models.Product;
 import br.com.sixplus2store.models.ProductSize;
@@ -91,5 +92,13 @@ public class ProductService {
 
         return productSizeRepository.findSizes(id);
 
+    }
+
+    public Page<ProductDTO> findBatch(List<Long> productBatch, Pageable pageable) {
+        return productRepository.findByIdIn(productBatch,pageable);
+    }
+
+    public List<ProductSizeDTO> findAllSizes() {
+        return productSizeRepository.findProductSizes();
     }
 }

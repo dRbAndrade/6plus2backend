@@ -1,6 +1,6 @@
 package br.com.sixplus2store.repositories;
 
-import br.com.sixplus2store.models.Product;
+import br.com.sixplus2store.dtos.ProductSizeDTO;
 import br.com.sixplus2store.models.ProductSize;
 import br.com.sixplus2store.models.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +18,9 @@ public interface ProductSizeRepository extends JpaRepository<ProductSize, Long> 
 
     @Query("SELECT s.name FROM ProductSize ps INNER JOIN ps.size s WHERE ps.product.id=:id ")
     List<String> findSizes(@Param("id")Long id);
+
+    @Query("SELECT new br.com.sixplus2store.dtos.ProductSizeDTO(p,s) " +
+            "FROM ProductSize ps INNER JOIN ps.product p INNER JOIN ps.size s")
+    List<ProductSizeDTO> findProductSizes();
+
 }

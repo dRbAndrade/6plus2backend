@@ -20,7 +20,7 @@ public class Product {
     private String title;
     @Column(precision = 10,scale = 2,nullable = false)
     private Double price;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     @Column(nullable = false)
     private String image;

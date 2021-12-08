@@ -30,4 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "where tb_product_size.product_id=tb_product.id and tb_product_size.size_id=:size",
             nativeQuery = true)
     Page<Product> findBySizes(@Param("size") Long size, Pageable pageable);
+
+    Page<ProductDTO> findByIdIn(List<Long> productBatch, Pageable pageable);
 }
